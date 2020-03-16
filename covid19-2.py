@@ -8,8 +8,6 @@ def read_data():
 	filename = 'corona_lmao_ninja_countries.json'
 	delay = 14400 # 4 hours
 
-	t = time.time() - os.path.getmtime(filename)
-	next_update = time.strftime('%H:%M:%S', time.gmtime(delay - t))
 	if not os.path.isfile(filename) or os.path.getmtime(filename) < time.time() - delay:
 		r = requests.get('https://corona.lmao.ninja/countries')
 		info = r.json()
@@ -17,9 +15,12 @@ def read_data():
 			json.dump(info, fp)
 			print('Retrieving new data from source.')
 	else:
+		t = time.time() - os.path.getmtime(filename)
+		next_update = time.strftime('%H:%M:%S', time.gmtime(delay - t))
 		with open(filename, 'r') as fp:
 			info = json.load(fp)
 			print(f'Loading cached data from file. Next update in {next_update}')
+	
 	return info
 
 fields = [
