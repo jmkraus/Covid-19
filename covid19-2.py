@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+
+# Any copyright is dedicated to the Public Domain.
+# https://creativecommons.org/publicdomain/zero/1.0/
+
+# Written by Jürgen Kraus <jmk99@me.com>
 import matplotlib.pyplot as plt
 import numpy as np
 import requests
@@ -20,7 +26,6 @@ def read_data():
 		with open(filename, 'r') as fp:
 			info = json.load(fp)
 			print(f'Loading cached data from file. Next update in {next_update}')
-	
 	return info
 
 fields = [
@@ -54,4 +59,3 @@ for i, v in enumerate(data):
 	ax.text(v, i - .15, ' ' + str(v), color='black', fontweight='normal')
 
 plt.show()
-
