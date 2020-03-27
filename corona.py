@@ -23,7 +23,7 @@ def gentle_download(url, delay = 86400):
 ######################################################################
 
 nbcases_filename = gentle_download(
-    'https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv'
+    'https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv'
 )
 
 ######################################################################
@@ -71,7 +71,7 @@ for key, color, label in [
         ('Switzerland', 'red', 'Switzerland'),
         ('France', 'lightgreen', 'France'),
         ('US', 'black', 'USA'),
-        ('Korea, South', 'gray', 'South Korea'),
+        ('Germany', 'gray', 'Germany'),
         ('Italy', 'purple', 'Italy'),
         ('China', 'orange', 'China')
 ]:
