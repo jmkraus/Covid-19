@@ -9,7 +9,13 @@ import numpy as np
 import requests
 import os, time
 import json
+import sys
 
+def debug_data(payload, field):
+	for entry in payload:
+		print(f"{entry['country']}: {entry[field]}")
+	sys.exit()
+	
 def read_data():
 	filename = 'corona_lmao_ninja_countries.json'
 	delay = 14400 # 4 hours
@@ -34,7 +40,8 @@ fields = [
 ]
 
 info = read_data()
-my_field = fields[1]
+my_field = fields[3]
+#debug_data(info, my_field)
 info.sort(key=lambda x:x[my_field], reverse=True)
 my_info = info[:10]
 
