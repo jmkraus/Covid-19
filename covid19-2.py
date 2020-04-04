@@ -59,7 +59,7 @@ print('Last data update: ' + format_date(last_update))
 
 #configuration
 my_field = fields[1]
-world = False
+world = True
 #debug_data(info, my_field)
 
 info.sort(key=lambda x: x[my_field], reverse=True)
