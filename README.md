@@ -6,6 +6,8 @@ A collection of small scripts to fetch statistical data on Covid-19 cases for no
 
 This is a nice script written by Francois Fleuret. Brought to attention by Ole Zorn on Twitter. Link to original file: <http://fleuret.org/git-extract/python/covid19.py>
 
+Oh, and thanks to Francois for the great idea of "gentle download"! :)
+
 ## Covid19-1.py
 
 Sample script by Ole Zorn (Developer of Pythonista) released on Twitter: <https://twitter.com/olemoritz/status/1238660638978736128>
