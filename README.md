@@ -27,6 +27,12 @@ Edit line `my_field = fields[1]` to another field index for different data.
 | 5     | recovered   |
 | 6     | critical    |
 
-Set line `world = False` to True if you want a diagram bar with a world total.
+~~Set line `world = False` to True if you want a diagram bar with a world total.~~
+World option has been temporarily disabled - data source has been changed again on 5.4.2020 and no longer contains *World* data row.
+
+You can now force data update by changing the line
+
+ˋinfo = read_data()ˋ to
+ˋinfo = read_data(True)ˋ which enables "Force" mode.
 
 **Stay healthy and take care of yourself!**

@@ -18,11 +18,11 @@ def debug_data(payload, field):
 	sys.exit()
 
 
-def read_data():
+def read_data(force=False):
 	filename = 'corona_lmao_ninja_countries.json'
 	delay = 14400  # 4 hours
 
-	if not os.path.isfile(
+	if force is True or not os.path.isfile(
 			filename) or os.path.getmtime(filename) < time.time() - delay:
 		r = requests.get('https://corona.lmao.ninja/countries')
 		info = r.json()
@@ -59,12 +59,12 @@ print('Last data update: ' + format_date(last_update))
 
 #configuration
 my_field = fields[1]
-world = True
+#world = True
 #debug_data(info, my_field)
 
 info.sort(key=lambda x: x[my_field], reverse=True)
-if world is False:
-	del info[0]
+#if world is False:
+#	del info[0]
 my_info = info[:10]
 
 # Set colors for bars, Germany is always red
