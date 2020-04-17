@@ -32,7 +32,7 @@ World option has been temporarily disabled - data source has been changed again 
 
 You can now force data update by changing the line
 
-ˋinfo = read_data()ˋ to
-ˋinfo = read_data(True)ˋ which enables "Force" mode.
+`info = read_data()` to
+`info = read_data(True)` which enables "Force" mode.
 
 **Stay healthy and take care of yourself!**
