@@ -57,34 +57,37 @@ info = read_data()
 last_update = info[0]['updated']
 print('Last data update: ' + format_date(last_update))
 
-#configuration
-my_field = fields[3]
-#world = True
-#debug_data(info, my_field)
-
-info.sort(key=lambda x: x[my_field], reverse=True)
-#if world is False:
-#	del info[0]
-my_info = info[:10]
-
-# Set colors for bars, Germany is always red
-my_colors = ['blue'] * len(my_info)
-for idx, val in enumerate(my_info):
-	if val['country'] == 'Germany':
-		my_colors[idx] = 'red'
-		break
-
-countries = [x['country'] for x in my_info]
-data = [x[my_field] for x in my_info]
-
-y_pos = np.arange(len(countries))
-ax = plt.subplot(111)
-ax.barh(y_pos, data, height=0.8, align='center', alpha=0.5, color=my_colors)
-plt.yticks(y_pos, countries)
-plt.xlabel(my_field)
-plt.title('COVID-19')
-for i, v in enumerate(data):
-	ax.text(v, i - .15, ' ' + format_value(v), size='9', color='#555555', fontweight='normal')
-
-plt.show()
+for i in (1, 2, 3, 4):
+	#Reset Diagram
+	plt.clf()
+	#configuration
+	my_field = fields[i]
+	#world = True
+	#debug_data(info, my_field)
+	
+	info.sort(key=lambda x: x[my_field], reverse=True)
+	#if world is False:
+	#	del info[0]
+	my_info = info[:10]
+	
+	# Set colors for bars, Germany is always red
+	my_colors = ['blue'] * len(my_info)
+	for idx, val in enumerate(my_info):
+		if val['country'] == 'Germany':
+			my_colors[idx] = 'red'
+			break
+	
+	countries = [x['country'] for x in my_info]
+	data = [x[my_field] for x in my_info]
+	
+	y_pos = np.arange(len(countries))
+	ax = plt.subplot(111)
+	ax.barh(y_pos, data, height=0.8, align='center', alpha=0.5, color=my_colors)
+	plt.yticks(y_pos, countries)
+	plt.xlabel(my_field)
+	plt.title('COVID-19')
+	for i, v in enumerate(data):
+		ax.text(v, i - .15, ' ' + format_value(v), size='9', color='#555555', fontweight='normal')
+	
+	plt.show()
 
