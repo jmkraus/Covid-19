@@ -58,19 +58,29 @@ last_update = info[0]['updated']
 print('Last data update: ' + format_date(last_update))
 
 for i in (1, 2, 3, 4):
-	#Reset Diagram
+	# Reset Diagram
 	plt.clf()
 	#configuration
 	my_field = fields[i]
-	#world = True
 	#debug_data(info, my_field)
 	
+	# Compile data from source
 	info.sort(key=lambda x: x[my_field], reverse=True)
-	#if world is False:
-	#	del info[0]
 	my_info = info[:10]
-	
-	# Set colors for bars, Germany is always red
+	germany_top10 = False
+	for record in my_info:
+		if record['country'] == 'Germany':
+			germany_top10 = True
+			break
+	counter = 0
+	if germany_top10 is False:
+		for record in info:
+			counter += 1
+			if record['country'] == 'Germany':
+				my_info.insert(10, record)
+				break
+
+	# Set colors for bars and rank number, Germany is always red
 	my_colors = ['blue'] * len(my_info)
 	for idx, val in enumerate(my_info):
 		if val['country'] == 'Germany':
