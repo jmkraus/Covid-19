@@ -34,15 +34,18 @@ def read_data(force=False):
 		next_update = format_time(delay - t)
 		with open(filename, 'r') as fp:
 			info = json.load(fp)
-			print(f'Loading cached data from file. Next update in {next_update}')
+			print(f'Loading data from cache. Next cache update in {next_update}')
 	return info
+
 
 def format_time(value):
 	return time.strftime('%H:%M:%S', time.gmtime(value))
-	
+
+
 def format_date(value):
-	return time.strftime('%c', time.gmtime(value/1000))
-	
+	return time.strftime('%c', time.gmtime(value / 1000))
+
+
 def format_value(number):
 	val = '{:,}'.format(number)
 	return val.replace(',', '.')
@@ -64,22 +67,22 @@ for i in (1, 2, 3, 4):
 	my_field = fields[i]
 	#world = True
 	#debug_data(info, my_field)
-	
+
 	info.sort(key=lambda x: x[my_field], reverse=True)
 	#if world is False:
 	#	del info[0]
 	my_info = info[:10]
-	
+
 	# Set colors for bars, Germany is always red
 	my_colors = ['blue'] * len(my_info)
 	for idx, val in enumerate(my_info):
 		if val['country'] == 'Germany':
 			my_colors[idx] = 'red'
 			break
-	
+
 	countries = [x['country'] for x in my_info]
 	data = [x[my_field] for x in my_info]
-	
+
 	y_pos = np.arange(len(countries))
 	ax = plt.subplot(111)
 	ax.barh(y_pos, data, height=0.8, align='center', alpha=0.5, color=my_colors)
@@ -87,7 +90,13 @@ for i in (1, 2, 3, 4):
 	plt.xlabel(my_field)
 	plt.title('COVID-19')
 	for i, v in enumerate(data):
-		ax.text(v, i - .15, ' ' + format_value(v), size='9', color='#555555', fontweight='normal')
-	
+		ax.text(
+			v,
+			i - .15,
+			' ' + format_value(v),
+			size='9',
+			color='#555555',
+			fontweight='normal')
+
 	plt.show()
 
