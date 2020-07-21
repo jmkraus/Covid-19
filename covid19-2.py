@@ -78,10 +78,8 @@ for i in (1, 2, 3, 4):
 		if record['country'] == 'Germany':
 			germany_top10 = True
 			break
-	counter = 0
 	if germany_top10 is False:
 		for record in info:
-			counter += 1
 			if record['country'] == 'Germany':
 				my_info.insert(10, record)
 				break
