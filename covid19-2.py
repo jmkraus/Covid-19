@@ -51,14 +51,22 @@ def format_value(number):
 	return val.replace(',', '.')
 
 
+def get_single_country(info, country):
+	for record in info:
+		if record['country'] == country:
+			return record
+
+
 fields = [
 	'country', 'cases', 'todayCases', 'deaths', 'todayDeaths', 'recovered',
 	'critical'
 ]
 
 info = read_data()
-last_update = info[0]['updated']
-print('Last data update: ' + format_date(last_update))
+my_country = 'Germany'
+my_country_record = get_single_country(info, my_country)
+last_update = my_country_record['updated']
+print(f'Last data update ({my_country}): ' + format_date(last_update))
 
 for i in (1, 2, 3, 4):
 	# Reset Diagram
@@ -67,27 +75,23 @@ for i in (1, 2, 3, 4):
 	my_field = fields[i]
 	#debug_data(info, my_field)
 
-	
 	# Compile data from source
 	info.sort(key=lambda x: x[my_field], reverse=True)
 	my_info = info[:10]
-
-	# Set colors for bars, Germany is always red
-	germany_top10 = False
+	
+	# Check if my_country is part of the top 10
+	my_country_top10 = False
 	for record in my_info:
-		if record['country'] == 'Germany':
-			germany_top10 = True
+		if record['country'] == my_country:
+			my_country__top10 = True
 			break
-	if germany_top10 is False:
-		for record in info:
-			if record['country'] == 'Germany':
-				my_info.insert(10, record)
-				break
+	if my_country_top10 is False:
+		my_info.insert(10, my_country_record)
 
-	# Set colors for bars and rank number, Germany is always red
+	# Set colors for bars and rank number, my_country is always red
 	my_colors = ['blue'] * len(my_info)
 	for idx, val in enumerate(my_info):
-		if val['country'] == 'Germany':
+		if val['country'] == my_country:
 			my_colors[idx] = 'red'
 			break
 
