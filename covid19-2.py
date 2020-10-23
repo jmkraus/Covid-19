@@ -83,7 +83,7 @@ for i in (1, 2, 3, 4):
 	my_country_top10 = False
 	for record in my_info:
 		if record['country'] == my_country:
-			my_country__top10 = True
+			my_country_top10 = True
 			break
 	if my_country_top10 is False:
 		my_info.insert(10, my_country_record)
